@@ -1,3 +1,11 @@
 .app {
-  font-size: 32px;
+  background-color: #f3f3f3;
+  font-family: 'Cabinet Grotesk', Arial, sans-serif;
+  font-weight: 700;
+}
+
+.app__wrapper {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
