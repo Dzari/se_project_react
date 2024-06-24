@@ -1,0 +1,19 @@
+.card__name {
+  padding: 2px 12px;
+  position: absolute;
+  margin: 15px 125px 0;
+  line-height: 20px;
+  font-size: 16px;
+  background-color: #fff;
+  opacity: 60%;
+  border-radius: 4px;
+}
+
+.card__image {
+  padding: 0;
+  margin: 0;
+  object-fit: cover;
+  max-width: 323px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 30%);
+}
