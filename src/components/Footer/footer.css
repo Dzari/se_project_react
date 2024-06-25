@@ -1,0 +1,19 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin: 171px 0 0 0;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.footer__author {
+    margin: 0 0 24px 0;
+    padding: 0;
+}
+
+.footer__year {
+    margin: 0 0 24px 0;
+    padding: 0;
+}
