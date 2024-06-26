@@ -1,4 +1,4 @@
-import WeatherCard from '../src/components/WeatherCard/weatherCard';
+import WeatherCard from '../src/components/WeatherCard/WeatherCard';
 import { defaultClothingItems } from '../src/utils/constants';
 import ItemCard from '../src/components/ItemCard/ItemCard';
 import './main.css';
