@@ -5,10 +5,17 @@ import Header from '../Header/header';
 import Main from '../Main/main';
 import Footer from '../Footer/footer';
 import ModalWithForm from '../ModalWithForm/modalWithForm.jsx';
+import ItemModal from '../ItemModal/itemModal.jsx';
 
 export default function App() {
   const [weatherData, setWeatherData] = useState({ type: 'cold' });
   const [activeModal, setActiveModal] = useState('');
+  const [selectedCard, setSelectedCard] = useState({});
+
+  const handleCardClick = (card) => {
+    setActiveModal('preview');
+    setSelectedCard(card);
+  };
 
   const handleAddClick = () => {
     setActiveModal('add-garment');
@@ -22,15 +29,32 @@ export default function App() {
     <div className="app">
       <div className="app__wrapper">
         <Header handleAddClick={handleAddClick} />
-        <Main weatherData={weatherData} />
+        <Main weatherData={weatherData} handleCardClick={handleCardClick} />
         <Footer />
       </div>
-      <ModalWithForm title="New garment" buttonText="Add garment" activeModal={activeModal} handleCloseClick={closeModal}>
+      <ModalWithForm
+        title="New garment"
+        buttonText="Add garment"
+        activeModal={activeModal}
+        onClose={closeModal}
+      >
         <label htmlFor="name" className="modal__label">
-          Name <input type="text" id="name" className="modal__input" placeholder="Name" />
+          Name{' '}
+          <input
+            type="text"
+            id="name"
+            className="modal__input"
+            placeholder="Name"
+          />
         </label>
         <label htmlFor="imageURL" className="modal__label">
-          Image <input type="url" id="imageURL" className="modal__input" placeholder="Image URL" />
+          Image{' '}
+          <input
+            type="url"
+            id="imageURL"
+            className="modal__input"
+            placeholder="Image URL"
+          />
         </label>
         <fieldset className="modal__radio-buttons">
           <legend className="modal__legend">Select the weather type:</legend>
@@ -38,7 +62,10 @@ export default function App() {
             <input type="radio" id="hot" className="modal__radio-input" />
             Hot
           </label>
-          <label htmlFor="warm" className="modal__label modal__label_type-radio">
+          <label
+            htmlFor="warm"
+            className="modal__label modal__label_type-radio"
+          >
             <input type="radio" id="warm" className="modal__radio-input" />
             Warm
           </label>
@@ -48,6 +75,11 @@ export default function App() {
           </label>
         </fieldset>
       </ModalWithForm>
+      <ItemModal
+        activeModal={activeModal}
+        card={selectedCard}
+        onClose={closeModal}
+      />
     </div>
   );
 }

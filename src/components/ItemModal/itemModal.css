@@ -1,0 +1,40 @@
+.modal__container_type_image {
+  position: relative;
+  background-color: #fff;
+  border-radius: 16px;
+  max-height: 610px;
+}
+
+.modal__close-button_type_image {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 26px;
+  right: 26px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  background-image: url('../../assets/itemModalClose.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.modal__image {
+  border-radius: 16px 16px 0 0;
+  max-height: 498px;
+  max-width: 498px;
+}
+
+.modal__footer {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.modal__title {
+  font-size: 20px;
+  margin: 20px 0 12px 32px;
+}
+
+.modal__weather {
+  margin: 20px 0 32px 32px;
+}
