@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
 import './app.css';
-import Header from '../Header/header';
+import Header from '../Header/Header';
 import Main from '../../../Main/main.jsx';
-import Footer from '../Footer/footer';
-import ModalWithForm from '../ModalWithForm/modalWithForm.jsx';
-import ItemModal from '../ItemModal/itemModal.jsx';
+import Footer from '../Footer/Footer';
+import ModalWithForm from '../ModalWithForm/ModalWithForm.jsx';
+import ItemModal from '../ItemModal/ItemModal.jsx';
 import { getWeather, filterWeatherData } from '../../utils/weatherAPI.js';
 import { APIKey, coordinates } from '../../utils/constants.js';
 
