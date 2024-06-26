@@ -1,7 +1,7 @@
 import { weatherOptions } from '../../utils/constants';
 import './weatherCard.css';
 
-export default function weatherCard({ weatherData }) {
+export default function WeatherCard({ weatherData }) {
   const filteredOptions = weatherOptions.filter((option) => {
     return (
       weatherData.condition === option.condition &&
