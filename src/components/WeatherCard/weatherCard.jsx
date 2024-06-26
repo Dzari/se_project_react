@@ -1,11 +1,18 @@
-import image from '../../assets/weathercard.svg';
+import { weatherOptions } from '../../utils/constants';
 import './weatherCard.css';
 
-export default function weatherCard() {
+export default function weatherCard({ weatherData }) {
+  const weatherOption = weatherOptions.filter((option) => {
+    return (
+      weatherData.condition === option.condition &&
+      weatherData.isDay === option.day
+    );
+  });
+
   return (
     <section className="weather-card">
-      <p className="weather-card__temp">75 &deg; F</p>
-      <img src={image} alt="" className="weather-card__image" />
+      <p className="weather-card__temp">{weatherData.temp.F}&deg;F</p>
+      <img src={weatherOption[0].url} alt="" className="weather-card__image" />
     </section>
   );
 }
