@@ -1,4 +1,4 @@
-import './header.css';
+import './Header.css';
 import avatar from '../../assets/defaultAvatar.svg';
 import logo from '../../assets/wtwrLogo.svg';
 

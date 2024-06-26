@@ -1,4 +1,4 @@
-import './itemCard.css';
+import './ItemCard.css';
 
 export default function itemCard({ card, onCardClick }) {
   const handleCardClick = () => {

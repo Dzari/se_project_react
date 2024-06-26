@@ -1,4 +1,4 @@
-import './modalWithForm.css';
+import './ModalWithForm.css';
 
 export default function ModalWithForm({ children, buttonText, title, activeModal, onClose }) {
   return (
