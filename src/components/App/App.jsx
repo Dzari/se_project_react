@@ -52,6 +52,7 @@ export default function App() {
         buttonText="Add garment"
         activeModal={activeModal}
         onClose={closeModal}
+        isOpen="add-garment"
       >
         <label htmlFor="name" className="modal__label">
           Name{' '}
@@ -74,18 +75,33 @@ export default function App() {
         <fieldset className="modal__radio-buttons">
           <legend className="modal__legend">Select the weather type:</legend>
           <label htmlFor="hot" className="modal__label modal__label_type-radio">
-            <input type="radio" id="hot" className="modal__radio-input" />
+            <input
+              type="radio"
+              name="modal__label_type-radio"
+              id="hot"
+              className="modal__radio-input"
+            />
             Hot
           </label>
           <label
             htmlFor="warm"
             className="modal__label modal__label_type-radio"
           >
-            <input type="radio" id="warm" className="modal__radio-input" />
+            <input
+              type="radio"
+              name="modal__label_type-radio"
+              id="warm"
+              className="modal__radio-input"
+            />
             Warm
           </label>
-          <label htmlFor="hot" className="modal__label modal__label_type-radio">
-            <input type="radio" id="cold" className="modal__radio-input" />
+          <label htmlFor="cold" className="modal__label modal__label_type-radio">
+            <input
+              type="radio"
+              name="modal__label_type-radio"
+              id="cold"
+              className="modal__radio-input"
+            />
             Cold
           </label>
         </fieldset>
