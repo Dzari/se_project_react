@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import './app.css';
 import Header from '../Header/Header';
-import Main from '../../../Main/main.jsx';
+import Main from '../Main/main.jsx';
 import Footer from '../Footer/Footer';
 import ModalWithForm from '../ModalWithForm/ModalWithForm.jsx';
 import ItemModal from '../ItemModal/ItemModal.jsx';
@@ -95,7 +95,10 @@ export default function App() {
             />
             Warm
           </label>
-          <label htmlFor="cold" className="modal__label modal__label_type-radio">
+          <label
+            htmlFor="cold"
+            className="modal__label modal__label_type-radio"
+          >
             <input
               type="radio"
               name="modal__label_type-radio"
