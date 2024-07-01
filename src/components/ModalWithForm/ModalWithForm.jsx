@@ -8,7 +8,7 @@ export default function ModalWithForm({
   isOpen,
 }) {
   return (
-    <div className={`modal ${isOpen === 'add-garment' && 'modal_opened'}`}>
+    <div className={`modal ${isOpen && 'modal_opened'}`}>
       <div className="modal__container">
         <h2 className="modal__title">{title}</h2>
         <button
