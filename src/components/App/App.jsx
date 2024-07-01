@@ -50,9 +50,8 @@ export default function App() {
       <ModalWithForm
         title="New garment"
         buttonText="Add garment"
-        activeModal={activeModal}
         onClose={closeModal}
-        isOpen="add-garment"
+        isOpen={activeModal}
       >
         <label htmlFor="name" className="modal__label">
           Name{' '}
