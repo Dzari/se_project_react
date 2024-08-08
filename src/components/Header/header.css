@@ -10,9 +10,15 @@
   margin: 0 0 0 24px;
 }
 
+.header__profile {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
 .header__add-clothes {
   font-weight: 700;
-  margin: 0 20px 0 auto;
+  margin: 0 20px 0 0;
   padding: 0;
   border: none;
 }
