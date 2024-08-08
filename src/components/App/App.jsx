@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import './app.css';
 import Header from '../Header/Header';
 import Main from '../Main/main.jsx';
+import Profile from '../Profile/Profile.jsx';
 import Footer from '../Footer/Footer';
 import ModalWithForm from '../ModalWithForm/ModalWithForm.jsx';
 import ItemModal from '../ItemModal/ItemModal.jsx';
@@ -67,7 +68,7 @@ export default function App() {
                 />
               }
             />
-            <Route path="/profile" element={<p>Profile</p>} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
 
           <Footer />
