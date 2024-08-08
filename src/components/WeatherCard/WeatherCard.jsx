@@ -5,8 +5,10 @@ import './weatherCard.css';
 
 export default function WeatherCard({ weatherData }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  console.log({ weatherData });
 
   const filteredOptions = weatherOptions.filter((option) => {
+    console.log(option);
     return (
       weatherData.condition === option.condition &&
       weatherData.isDay === option.day
@@ -14,7 +16,9 @@ export default function WeatherCard({ weatherData }) {
   });
   let weatherOption;
   if (filteredOptions.length === 0) {
-    weatherOption = '';
+    weatherOption = {
+      url: 'http://localhost:3000/src/assets/day/clearDay.svg',
+    };
   } else {
     weatherOption = filteredOptions[0];
   }
