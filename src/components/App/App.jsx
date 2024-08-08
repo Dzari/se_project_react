@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
 import './app.css';
 import Header from '../Header/Header';
@@ -55,7 +56,20 @@ export default function App() {
       >
         <div className="app__wrapper">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                />
+              }
+            />
+            <Route path="/profile" element={<p>Profile</p>} />
+          </Routes>
+
           <Footer />
         </div>
         <ModalWithForm
