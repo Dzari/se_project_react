@@ -2,6 +2,7 @@ import './header.css';
 import avatar from '../../assets/defaultAvatar.svg';
 import logo from '../../assets/wtwrLogo.svg';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
+import { userName } from '../../utils/constants';
 
 export default function Header({ handleAddClick, weatherData }) {
   const currentDate = new Date().toLocaleString('default', {
@@ -25,7 +26,7 @@ export default function Header({ handleAddClick, weatherData }) {
           + Add clothes
         </button>
         <div className="header__user">
-          <p className="header__username">First Last</p>
+          <p className="header__username">{userName}</p>
           <img src={avatar} alt="User's Name" className="header__avatar" />
         </div>
       </div>
