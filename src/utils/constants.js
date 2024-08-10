@@ -106,3 +106,5 @@ export const coordinates = {
 };
 
 export const APIKey = 'a63cf73b18c7fcc3512e24fed7ae4d58';
+
+export const userName = 'Terrence Tegegne';
