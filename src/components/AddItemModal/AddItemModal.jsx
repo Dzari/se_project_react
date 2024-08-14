@@ -23,6 +23,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
     onAddItem({ name, link, weather });
   };
 
+
   return (
     <ModalWithForm
       title="New garment"
@@ -32,7 +33,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
       onSubmit={handleSubmit}
     >
       <label htmlFor="name" className="modal__label">
-        Name{' '}
+        Name*{' '}
         <input
           type="text"
           id="name"
@@ -43,7 +44,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
         />
       </label>
       <label htmlFor="imageURL" className="modal__label">
-        Image{' '}
+        Image*{' '}
         <input
           type="url"
           id="imageURL"
@@ -54,7 +55,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
         />
       </label>
       <fieldset className="modal__radio-buttons">
-        <legend className="modal__legend">Select the weather type:</legend>
+        <legend className="modal__legend">Select the weather type:*</legend>
         <label htmlFor="hot" className="modal__label modal__label_type-radio">
           <input
             type="radio"

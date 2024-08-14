@@ -1,7 +1,7 @@
 import './clothesSection.css';
 import ItemCard from '../ItemCard/ItemCard';
 
-const ClothesSection = ({ clothingItems }) => {
+const ClothesSection = ({ clothingItems, handleCardClick }) => {
   return (
     <div className="clothesSection">
       <div className="clothesSection__header">
@@ -9,8 +9,10 @@ const ClothesSection = ({ clothingItems }) => {
         <button className="clothesSection_addItem-button">+ Add new</button>
       </div>
       <div className="clothesSection__cards">
-        {clothingItems.clothingItems.map((card) => {
-          return <ItemCard key={card._id} card={card} />;
+        {clothingItems.map((card) => {
+          return (
+            <ItemCard key={card._id} card={card} onClick={handleCardClick} />
+          );
         })}
       </div>
     </div>

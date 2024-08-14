@@ -80,11 +80,25 @@ export default function App() {
                 />
               }
             />
-            <Route path="/profile" element={<Profile clothingItems={clothingItems}/>} />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  clothingItems={clothingItems}
+                  handleCardClick={handleCardClick}
+                />
+              }
+            />
           </Routes>
 
           <Footer />
         </div>
+        <ItemModal
+          activeModal={activeModal}
+          card={selectedCard}
+          onClose={handleCloseModal}
+        />
+
         {activeModal === 'add-garment' && (
           <AddItemModal
             handleCloseModal={handleCloseModal}

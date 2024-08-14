@@ -95,11 +95,20 @@
   padding: 0;
   margin-top: 32px;
   border: none;
-  background-color: #0000004d;
+  background-color: #000000;
   border-radius: 4px;
   color: #fff;
   cursor: pointer;
   height: 36px;
   margin-top: 18px;
   width: 124px;
+}
+
+.modal__submit-button:hover {
+  opacity: 0.6;
+}
+
+.modal__submit-button:disabled {
+  opacity: 0.3;
+  cursor: auto;
 }

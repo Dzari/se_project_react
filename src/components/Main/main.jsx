@@ -25,7 +25,7 @@ const Main = ({ weatherData, handleCardClick, clothingItems }) => {
                 <ItemCard
                   key={card._id}
                   card={card}
-                  onCardClick={handleCardClick}
+                  onClick={handleCardClick}
                 />
               );
             })}
