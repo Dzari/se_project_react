@@ -13,6 +13,9 @@ export default function ItemModal({ activeModal, card, onClose }) {
         <div className="modal__footer">
           <h2 className="modal__title">{card.name}</h2>
           <p className="modal__weather">Weather: {card.weather}</p>
+          <button type="button" className="modal__delete-button">
+            Delete item
+          </button>
         </div>
       </div>
     </div>

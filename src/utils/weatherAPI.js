@@ -1,3 +1,9 @@
+const baseUrl = "http://localhost:3001";
+const headers = {
+  "Content-Type": "application/json",
+};
+
+
 function validateFetch(res) {
   if (res.ok) {
     return res.json();
