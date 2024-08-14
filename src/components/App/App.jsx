@@ -9,7 +9,11 @@ import Footer from '../Footer/Footer';
 import ModalWithForm from '../ModalWithForm/ModalWithForm.jsx';
 import ItemModal from '../ItemModal/ItemModal.jsx';
 import { getWeather, filterWeatherData } from '../../utils/weatherAPI.js';
-import { APIKey, coordinates } from '../../utils/constants.js';
+import {
+  APIKey,
+  coordinates,
+  defaultClothingItems,
+} from '../../utils/constants.js';
 import { CurrentTemperatureUnitContext } from '../../contexts/CurrentTempatureUnitContexts.js';
 import AddItemModal from '../AddItemModal/AddItemModal.jsx';
 
@@ -22,6 +26,7 @@ export default function App() {
   const [activeModal, setActiveModal] = useState('');
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
 
   const handleCardClick = (card) => {
     setActiveModal('preview');
@@ -32,8 +37,8 @@ export default function App() {
     setActiveModal('add-garment');
   };
 
-  const onAddItem = (values) => {
-    console.log(values);
+  const handleAddItemSubmit = (values) => {
+    setClothingItems([values, ...clothingItems]);
     handleCloseModal();
   };
 
@@ -71,10 +76,11 @@ export default function App() {
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
                 />
               }
             />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile clothingItems={clothingItems}/>} />
           </Routes>
 
           <Footer />
@@ -83,7 +89,7 @@ export default function App() {
           <AddItemModal
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === 'add-garment'}
-            onAddItem={onAddItem}
+            onAddItem={handleAddItemSubmit}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>

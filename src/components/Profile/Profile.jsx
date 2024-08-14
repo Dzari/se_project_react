@@ -2,11 +2,11 @@ import ClothesSection from '../ClothesSection/ClothesSection';
 import SideBar from '../SideBar/SideBar';
 import './profile.css';
 
-const Profile = () => {
+const Profile = (clothingItems) => {
   return (
     <div className="profile">
       <SideBar />
-      <ClothesSection />
+      <ClothesSection clothingItems={clothingItems} />
     </div>
   );
 };
