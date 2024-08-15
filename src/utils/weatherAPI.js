@@ -1,16 +1,6 @@
-const baseUrl = "http://localhost:3001";
-const headers = {
-  "Content-Type": "application/json",
+const validateFetch = (res) => {
+  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 };
-
-
-function validateFetch(res) {
-  if (res.ok) {
-    return res.json();
-  } else {
-    return Promise.reject(`Error: ${res.status}`);
-  }
-}
 
 export const getWeather = ({ latitude, longitude }, APIkey) => {
   return fetch(
@@ -49,3 +39,5 @@ const getWeatherType = (temperature) => {
     return 'cold';
   }
 };
+
+export { validateFetch };
