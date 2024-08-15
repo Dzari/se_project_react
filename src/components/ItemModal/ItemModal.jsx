@@ -9,7 +9,7 @@ export default function ItemModal({ activeModal, card, onClose }) {
           type="button"
           className="modal__close-button_type_image"
         ></button>
-        <img src={card.link} alt={card.name} className="modal__image" />
+        <img src={card.imageUrl} alt={card.name} className="modal__image" />
         <div className="modal__footer">
           <h2 className="modal__title">{card.name}</h2>
           <p className="modal__weather">Weather: {card.weather}</p>
