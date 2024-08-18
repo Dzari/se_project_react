@@ -43,7 +43,10 @@ export default function App() {
   };
 
   const handleDeleteItem = (item) => {
-    deleteItem(item).then(handleCloseModal).catch(console.error);
+    deleteItem(item)
+      .then(handleGetItems)
+      .then(handleCloseModal)
+      .catch(console.error);
   };
 
   const handleCloseModal = () => {
@@ -56,6 +59,14 @@ export default function App() {
       : setCurrentTemperatureUnit('F');
   };
 
+  const handleGetItems = () => {
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch(console.error);
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIKey)
       .then((res) => {
@@ -66,12 +77,8 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    getItems()
-      .then((data) => {
-        setClothingItems(data);
-      })
-      .catch(console.error);
-  }, [clothingItems]);
+    handleGetItems();
+  }, []);
 
   return (
     <div className="app">

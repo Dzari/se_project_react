@@ -6,7 +6,7 @@ const headers = {
 };
 
 const getItems = () => {
-  return fetch(`${baseUrl}/items/`).then(validateFetch);
+  return fetch(`${baseUrl}/items`).then(validateFetch);
 };
 
 const deleteItem = (item) => {
