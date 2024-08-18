@@ -9,8 +9,9 @@ const getItems = () => {
   return fetch(`${baseUrl}/items/`).then(validateFetch);
 };
 
-const deleteItem = (_id) => {
-  return fetch(`${baseUrl}/items/${_id}`, {
+const deleteItem = (item) => {
+  console.log(item);
+  return fetch(`${baseUrl}/items/${item._id}`, {
     method: 'DELETE',
     headers: headers,
   }).then(validateFetch);

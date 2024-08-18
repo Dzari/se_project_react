@@ -11,7 +11,7 @@ import { getWeather, filterWeatherData } from '../../utils/weatherAPI.js';
 import { APIKey, coordinates } from '../../utils/constants.js';
 import { CurrentTemperatureUnitContext } from '../../contexts/CurrentTempatureUnitContexts.js';
 import AddItemModal from '../AddItemModal/AddItemModal.jsx';
-import { getItems, postItem } from '../../utils/api.jsx';
+import { deleteItem, getItems, postItem } from '../../utils/api.jsx';
 
 export default function App() {
   const [weatherData, setWeatherData] = useState({
@@ -34,10 +34,16 @@ export default function App() {
   };
 
   const handleAddItemSubmit = (item) => {
-    postItem(item).then((item) => {
-    setClothingItems([item, ...clothingItems]);
-    });
+    postItem(item)
+      .then((item) => {
+        setClothingItems([item, ...clothingItems]);
+      })
+      .catch(console.error);
     handleCloseModal();
+  };
+
+  const handleDeleteItem = (item) => {
+    deleteItem(item).then(handleCloseModal).catch(console.error);
   };
 
   const handleCloseModal = () => {
@@ -65,7 +71,7 @@ export default function App() {
         setClothingItems(data);
       })
       .catch(console.error);
-  }, []);
+  }, [clothingItems]);
 
   return (
     <div className="app">
@@ -103,6 +109,7 @@ export default function App() {
           activeModal={activeModal}
           card={selectedCard}
           onClose={handleCloseModal}
+          onDelete={handleDeleteItem}
         />
 
         {activeModal === 'add-garment' && (
