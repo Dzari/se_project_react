@@ -2,7 +2,6 @@ import './itemModal.css';
 
 export default function ItemModal({ activeModal, card, onClose, onDelete }) {
   const handleDelete = () => {
-    console.log(card);
     onDelete(card);
   };
 

@@ -10,7 +10,6 @@ const getItems = () => {
 };
 
 const deleteItem = (item) => {
-  console.log(item);
   return fetch(`${baseUrl}/items/${item._id}`, {
     method: 'DELETE',
     headers: headers,
