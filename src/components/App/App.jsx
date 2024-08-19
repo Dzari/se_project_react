@@ -38,13 +38,17 @@ export default function App() {
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
       })
+      .then(handleCloseModal)
       .catch(console.error);
-    handleCloseModal();
   };
 
-  const handleDeleteItem = (item) => {
-    deleteItem(item)
-      .then(handleGetItems)
+  const handleDeleteItem = (deletedItem) => {
+    deleteItem(deletedItem)
+      .then(() => {
+        setClothingItems((clothingItems) =>
+          clothingItems.filter((item) => item._id !== deletedItem._id)
+        );
+      })
       .then(handleCloseModal)
       .catch(console.error);
   };
@@ -59,14 +63,6 @@ export default function App() {
       : setCurrentTemperatureUnit('F');
   };
 
-  const handleGetItems = () => {
-    getItems()
-      .then((data) => {
-        setClothingItems(data);
-      })
-      .catch(console.error);
-  };
-
   useEffect(() => {
     getWeather(coordinates, APIKey)
       .then((res) => {
@@ -77,7 +73,11 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    handleGetItems();
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch(console.error);
   }, []);
 
   return (
