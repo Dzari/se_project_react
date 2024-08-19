@@ -23,7 +23,6 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
     onAddItem({ name, imageUrl, weather });
   };
 
-
   return (
     <ModalWithForm
       title="New garment"
@@ -41,6 +40,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
           placeholder="Name"
           value={name}
           onChange={handleNameChange}
+          required={true}
         />
       </label>
       <label htmlFor="imageURL" className="modal__label">
@@ -52,6 +52,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
           placeholder="Image URL"
           value={imageUrl}
           onChange={handleImageUrlChange}
+          required={true}
         />
       </label>
       <fieldset className="modal__radio-buttons">
@@ -64,6 +65,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
             className="modal__radio-input"
             value="hot"
             onChange={handleWeatherChange}
+            required={true}
           />
           Hot
         </label>
@@ -75,6 +77,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
             className="modal__radio-input"
             value="warm"
             onChange={handleWeatherChange}
+            required={true}
           />
           Warm
         </label>
@@ -86,6 +89,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
             className="modal__radio-input"
             value="cold"
             onChange={handleWeatherChange}
+            required={true}
           />
           Cold
         </label>
