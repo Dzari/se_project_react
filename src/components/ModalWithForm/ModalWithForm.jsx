@@ -2,7 +2,6 @@ import './modalWithForm.css';
 
 export default function ModalWithForm({
   children,
-  buttonText,
   title,
   onClose,
   isOpen,
@@ -19,13 +18,6 @@ export default function ModalWithForm({
         />
         <form onSubmit={onSubmit} className="modal__form">
           {children}
-          <button
-            disabled={false}
-            type="submit"
-            className="modal__submit-button"
-          >
-            {buttonText}
-          </button>
         </form>
       </div>
     </div>
