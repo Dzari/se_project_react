@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 
 import './header.css';
-import avatar from '../../assets/defaultAvatar.svg';
 import logo from '../../assets/wtwrLogo.svg';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
 import { Link } from 'react-router-dom';
 import { CurrentUserContext, LoggedInContext } from '../../contexts/contexts';
+import { getInitials } from '../../utils/constants';
 
 export default function Header({
   handleAddClick,
@@ -21,13 +21,6 @@ export default function Header({
   const { isLoggedIn } = useContext(LoggedInContext);
   const { currentUser } = useContext(CurrentUserContext);
 
-  const getInitials = (name) => {
-    if (!name) return '';
-    return name
-      .split(' ')
-      .map((word) => word.charAt(0).toUpperCase())
-      .join('');
-  };
 
   return (
     <header className="header">

@@ -49,3 +49,7 @@
   bottom: 68px;
   right: 32px;
 }
+
+.modal__delete-button_hidden {
+  visibility: hidden;
+}

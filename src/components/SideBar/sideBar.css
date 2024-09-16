@@ -1,3 +1,9 @@
+.sideBar {
+  display: flex;
+  max-width: 229px;
+  max-height: 56px;
+}
+
 .sideBar__user {
   display: flex;
   align-items: center;
@@ -15,4 +21,27 @@
 .sideBar__avatar {
   width: 56px;
   height: 56px;
+}
+
+.sideBar__buttons {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  margin-top: 74px;
+}
+
+.sideBar__button {
+  width: 229px;
+  height: 25px;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24.8px;
+  text-align: left;
+  color: rgba(0, 0, 0, 1);
+  border: none;
+  margin: 8px 0 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
 }
