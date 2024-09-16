@@ -1,27 +1,30 @@
 import { validateFetch } from './weatherAPI';
 
 const baseUrl = 'http://localhost:3001';
-const headers = {
-  'Content-Type': 'application/json',
-};
 
 const getItems = () => {
   return fetch(`${baseUrl}/items`).then(validateFetch);
 };
 
-const deleteItem = (item) => {
+const deleteItem = (item, token) => {
   return fetch(`${baseUrl}/items/${item._id}`, {
     method: 'DELETE',
-    headers: headers,
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
   }).then(validateFetch);
 };
 
-const postItem = ({ name, weather, imageUrl }) => {
+const postItem = ({ name, weather, imageUrl }, token) => {
   return fetch(`${baseUrl}/items/`, {
     method: 'POST',
-    headers: headers,
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({ name, weather, imageUrl }),
   }).then(validateFetch);
 };
 
-export { getItems, postItem, deleteItem };
+export { getItems, postItem, deleteItem, baseUrl };
