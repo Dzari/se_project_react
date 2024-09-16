@@ -21,14 +21,25 @@ const login = ({ email, password }) => {
   }).then(validateFetch);
 };
 
-const verifyToken = (token) => {
+const getCurrentUser = (token) => {
   return fetch(`${baseUrl}/users/me`, {
     method: 'GET',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       authorization: `Bearer ${token}`,
     },
   }).then(validateFetch);
 };
 
-export { signup, login, verifyToken };
+const updateUser = ({ name, avatarUrl }, token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatarUrl }),
+  }).then(validateFetch);
+};
+
+export { signup, login, getCurrentUser, updateUser };
