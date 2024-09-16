@@ -4,9 +4,8 @@ import './header.css';
 import avatar from '../../assets/defaultAvatar.svg';
 import logo from '../../assets/wtwrLogo.svg';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
-import { userName } from '../../utils/constants';
 import { Link } from 'react-router-dom';
-import { LoggedInContext } from '../../contexts/LoggedInContext';
+import { CurrentUserContext, LoggedInContext } from '../../contexts/contexts';
 
 export default function Header({
   handleAddClick,
@@ -19,7 +18,16 @@ export default function Header({
     day: 'numeric',
   });
 
-  const { loggedInStatus } = useContext(LoggedInContext);
+  const { isLoggedIn } = useContext(LoggedInContext);
+  const { currentUser } = useContext(CurrentUserContext);
+
+  const getInitials = (name) => {
+    if (!name) return '';
+    return name
+      .split(' ')
+      .map((word) => word.charAt(0).toUpperCase())
+      .join('');
+  };
 
   return (
     <header className="header">
@@ -32,15 +40,30 @@ export default function Header({
       <div className="header__profile">
         <ToggleSwitch />
         <button
-          onClick={
-            loggedInStatus === 'false' ? handleLoginClick : handleAddClick
-          }
+          onClick={isLoggedIn ? handleAddClick : handleLoginClick}
           type="button"
           className="header__add-clothes"
         >
-          {loggedInStatus === 'false' ? 'Log in' : '+Add Clothes'}
+          {isLoggedIn ? '+Add Clothes' : 'Login'}
         </button>
-        {loggedInStatus === 'false' ? (
+        {isLoggedIn ? (
+          <div className="header__user">
+            <p className="header__username">{currentUser.name}</p>
+            <Link to="/profile">
+            {currentUser.avatarUrl ? (
+                <img
+                  src={currentUser.avatarUrl}
+                  alt="Avatar"
+                  className="header__avatar"
+                />
+              ) : (
+                <div className="header__avatar-placeholder">
+                  {getInitials(currentUser.name)}
+                </div>
+              )}
+            </Link>
+          </div>
+        ) : (
           <button
             onClick={handleSignupClick}
             type="button"
@@ -48,13 +71,6 @@ export default function Header({
           >
             Sign Up
           </button>
-        ) : (
-          <div className="header__user">
-            <p className="header__username">{userName}</p>
-            <Link to="/profile">
-              <img src={avatar} alt="User's Name" className="header__avatar" />
-            </Link>
-          </div>
         )}
       </div>
     </header>
