@@ -19,7 +19,13 @@ import { deleteItem, getItems, postItem } from '../../utils/api.jsx';
 import LoginModal from '../LoginModal/LoginModal.jsx';
 import SignupModal from '../SignupModal/SignupModal.jsx';
 import ProtectedRoute from '../ProtectedRoute/protectedRoute.jsx';
-import { login, signup, verifyToken } from '../../utils/auth.jsx';
+import {
+  getCurrentUser,
+  login,
+  signup,
+  updateUser,
+} from '../../utils/auth.jsx';
+import EditProfileModal from '../EditProfileModal/EditProfileModal.jsx';
 
 export default function App() {
   const [weatherData, setWeatherData] = useState({
@@ -52,6 +58,14 @@ export default function App() {
     setActiveModal('signup');
   };
 
+  const handleEditProfileClick = () => {
+    setActiveModal('editProfile');
+  };
+
+  const handleLogout = () => {
+    console.log('logged out');
+  };
+
   const handleAddItemSubmit = (item) => {
     postItem(item, token)
       .then((item) => {
@@ -72,6 +86,14 @@ export default function App() {
       .catch(console.error);
   };
 
+  const handleEditProfile = (data) => {
+    updateUser(data, token)
+      .then(getCurrentUser(token))
+      .then((user) => handleCurrentUser(user))
+      .catch((err) => console.log(err))
+      .finally(handleCloseModal);
+  };
+
   const handleCloseModal = () => {
     setActiveModal('');
   };
@@ -90,7 +112,6 @@ export default function App() {
     if (user) {
       setIsLoggedIn(true);
       setCurrentUser(user);
-      console.log(user);
     }
   };
 
@@ -132,7 +153,7 @@ export default function App() {
     if (!token) {
       return;
     }
-    verifyToken(token).then((user) => handleCurrentUser(user));
+    getCurrentUser(token).then((user) => handleCurrentUser(user));
   }, []);
 
   return (
@@ -171,6 +192,8 @@ export default function App() {
                         clothingItems={clothingItems}
                         onCardClick={handleCardClick}
                         onAddClick={handleAddClick}
+                        onEditProfileClick={handleEditProfileClick}
+                        onLogoutClick={handleLogout}
                       />
                     </ProtectedRoute>
                   }
@@ -215,6 +238,14 @@ export default function App() {
                 handleCloseModal={handleCloseModal}
                 isOpen={activeModal === 'signup'}
                 handleSignup={handleSignup}
+              />
+            )}
+            {activeModal === 'editProfile' && (
+              <EditProfileModal
+                handleCloseModal={handleCloseModal}
+                isOpen={activeModal === 'editProfile'}
+                onSubmit={handleEditProfile}
+                currentUser={currentUser}
               />
             )}
           </CurrentUserContext.Provider>
