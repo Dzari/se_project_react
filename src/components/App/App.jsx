@@ -15,7 +15,13 @@ import {
   LoggedInContext,
 } from '../../contexts/contexts.js';
 import AddItemModal from '../AddItemModal/AddItemModal.jsx';
-import { deleteItem, getItems, postItem } from '../../utils/api.jsx';
+import {
+  deleteItem,
+  deleteLike,
+  getItems,
+  likeItem,
+  postItem,
+} from '../../utils/api.jsx';
 import LoginModal from '../LoginModal/LoginModal.jsx';
 import SignupModal from '../SignupModal/SignupModal.jsx';
 import ProtectedRoute from '../ProtectedRoute/protectedRoute.jsx';
@@ -62,10 +68,6 @@ export default function App() {
     setActiveModal('editProfile');
   };
 
-  const handleLogout = () => {
-    console.log('logged out');
-  };
-
   const handleAddItemSubmit = (item) => {
     postItem(item, token)
       .then((item) => {
@@ -108,6 +110,27 @@ export default function App() {
     isLoggedIn === true ? setIsLoggedIn(false) : setIsLoggedIn(true);
   };
 
+  const handleCardLike = (item) => {
+    const id = item._id;
+    if (item.likes.includes(currentUser._id)) {
+      deleteLike(currentUser, id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+        })
+        .catch((err) => console.log(err));
+    } else {
+      likeItem(currentUser, item._id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
   const handleCurrentUser = (user) => {
     if (user) {
       setIsLoggedIn(true);
@@ -120,8 +143,14 @@ export default function App() {
       .then((res) => {
         localStorage.setItem('jwt', res.token);
       })
+      .then(handleIsLoggedIn)
       .catch((err) => console.log(err))
       .finally(handleCloseModal);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('jwt', token);
+    handleIsLoggedIn();
   };
 
   const handleSignup = ({ email, password, name, avatarUrl }) => {
@@ -181,6 +210,7 @@ export default function App() {
                       weatherData={weatherData}
                       handleCardClick={handleCardClick}
                       clothingItems={clothingItems}
+                      handleCardLike={handleCardLike}
                     />
                   }
                 />
