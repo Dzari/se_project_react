@@ -69,7 +69,7 @@ export default function App() {
 
   //Sets which user is logged in and a boolean if user is guest or user
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState('');
 
   //Auth token used for authorization
   const token = localStorage.getItem('jwt');
@@ -157,6 +157,7 @@ export default function App() {
     login(data)
       .then((res) => {
         localStorage.setItem('jwt', res.token);
+        setCurrentUser(res.user);
       })
       .then(handleIsLoggedIn)
       .catch((err) => console.log(err))
@@ -195,10 +196,9 @@ export default function App() {
     }
   };
 
-
   //*********************************Initial Functions*****************************//
 
-  //Pulls and sets weather data based on location 
+  //Pulls and sets weather data based on location
   // (location services still to be implemented)
   useEffect(() => {
     getWeather(coordinates, APIKey)
@@ -217,7 +217,6 @@ export default function App() {
       })
       .catch(console.error);
   }, []);
-
 
   //Pulls token if exists and sets auto logs in user
   useEffect(() => {

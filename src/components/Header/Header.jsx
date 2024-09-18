@@ -21,7 +21,6 @@ export default function Header({
   const { isLoggedIn } = useContext(LoggedInContext);
   const { currentUser } = useContext(CurrentUserContext);
 
-
   return (
     <header className="header">
       <Link to="/">
@@ -43,7 +42,7 @@ export default function Header({
           <div className="header__user">
             <p className="header__username">{currentUser.name}</p>
             <Link to="/profile">
-            {currentUser.avatarUrl ? (
+              {currentUser.avatarUrl ? (
                 <img
                   src={currentUser.avatarUrl}
                   alt="Avatar"
