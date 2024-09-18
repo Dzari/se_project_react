@@ -1,12 +1,37 @@
-.card__name {
-  padding: 2px 12px;
+.card {
+  position: relative;
+}
+
+.card__header {
   position: absolute;
-  margin: 15px 125px 0;
+  display: flex;
+  top: 15px;
+  left: 121px;
+  gap: 10px;
+}
+
+.card__name {
+  padding: 0;
+  margin: 0;
   line-height: 20px;
   font-size: 16px;
   background-color: #fff;
   opacity: 60%;
   border-radius: 4px;
+}
+
+.card__like {
+  border: none;
+  background-image: url(../../assets/likeButton_unliked.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  cursor: pointer;
+  margin-top: 5px;
+  padding: 0;
+  width: 18px;
+  height: 15px;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .card__image {
@@ -17,4 +42,8 @@
   height: 328px;
   border-radius: 20px;
   border: 1px solid rgba(0, 0, 0, 30%);
+}
+
+.card__like-active {
+  background-image: url(../../assets/likeButton_liked.svg);
 }

@@ -20,11 +20,33 @@ const postItem = ({ name, weather, imageUrl }, token) => {
   return fetch(`${baseUrl}/items/`, {
     method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, weather, imageUrl }),
   }).then(validateFetch);
 };
 
-export { getItems, postItem, deleteItem, baseUrl };
+const likeItem = (user, itemId, token) => {
+  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(user),
+  }).then(validateFetch);
+};
+
+const deleteLike = (user, itemId, token) => {
+  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+    method: 'delete',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(user),
+  }).then(validateFetch);
+};
+
+export { getItems, postItem, deleteItem, deleteLike, likeItem, baseUrl };
