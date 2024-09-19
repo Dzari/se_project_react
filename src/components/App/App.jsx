@@ -301,6 +301,7 @@ export default function App() {
                 handleCloseModal={handleCloseModal}
                 isOpen={activeModal === 'login'}
                 handleLogin={handleLogin}
+                handleSignupClick={handleSignupClick}
               />
             )}
             {activeModal === 'signup' && (
@@ -308,6 +309,7 @@ export default function App() {
                 handleCloseModal={handleCloseModal}
                 isOpen={activeModal === 'signup'}
                 handleSignup={handleSignup}
+                handleLoginClick={handleLoginClick}
               />
             )}
             {activeModal === 'editProfile' && (

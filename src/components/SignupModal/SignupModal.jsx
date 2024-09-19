@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 
-const LoginModal = ({ handleCloseModal, handleSignup, isOpen }) => {
+const LoginModal = ({
+  handleCloseModal,
+  handleSignup,
+  isOpen,
+  handleLoginClick,
+}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -71,23 +76,27 @@ const LoginModal = ({ handleCloseModal, handleSignup, isOpen }) => {
           onChange={handleNameChange}
           required={true}
         />
-        <label htmlFor="avatarUrl" className="modal__label">
-          Avatar URL*{' '}
-          <input
-            type="url"
-            id="avatarUrl"
-            className="modal__input"
-            placeholder="Avatar URL"
-            value={avatarUrl}
-            onChange={handleAvatarUrlChange}
-            required={true}
-          />
-        </label>
+      </label>
+      <label htmlFor="avatarUrl" className="modal__label">
+        Avatar URL*{' '}
+        <input
+          type="url"
+          id="avatarUrl"
+          className="modal__input"
+          placeholder="Avatar URL"
+          value={avatarUrl}
+          onChange={handleAvatarUrlChange}
+          required={true}
+        />
       </label>
       <button type="submit" className="modal__submit-button" disabled={false}>
         Sign Up
       </button>
-      <button type="button" className="modal__signup-button">
+      <button
+        type="button"
+        className="modal__signup-button"
+        onClick={handleLoginClick}
+      >
         or Log In
       </button>
     </ModalWithForm>
