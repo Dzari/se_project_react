@@ -61,6 +61,7 @@ export default function App() {
 
   const [activeModal, setActiveModal] = useState('');
   const [selectedCard, setSelectedCard] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   //Used to determine current temp & an array of clothing items which are used
   // to filter based on temp
@@ -69,7 +70,7 @@ export default function App() {
 
   //Sets which user is logged in and a boolean if user is guest or user
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState('');
+  const [currentUser, setCurrentUser] = useState({ _id: '' });
 
   //Auth token used for authorization
   const token = localStorage.getItem('jwt');
@@ -135,33 +136,42 @@ export default function App() {
 
   //Submit handlers
   const handleAddItemSubmit = (item) => {
+    setIsLoading(true);
+
     postItem(item, token)
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
       })
-      .then(handleCloseModal)
-      .catch(console.error);
+      .then(() => handleCloseModal())
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   };
 
   const handleEditProfile = (data) => {
+    setIsLoading(true);
+
     updateUser(data, token)
-      .then(getCurrentUser(token))
+      .then(() => getCurrentUser(token))
       .then((user) => handleCurrentUser(user))
+      .then(() => handleCloseModal())
       .catch((err) => console.log(err))
-      .finally(handleCloseModal);
+      .finally(() => setIsLoading(false));
   };
 
   //Authentication and sign in handlers
 
   const handleLogin = (data) => {
+    setIsLoading(true);
+
     login(data)
       .then((res) => {
         localStorage.setItem('jwt', res.token);
         setCurrentUser(res.user);
       })
-      .then(handleIsLoggedIn)
+      .then(() => handleIsLoggedIn())
+      .then(() => handleCloseModal())
       .catch((err) => console.log(err))
-      .finally(handleCloseModal);
+      .finally(() => setIsLoading(false));
   };
 
   const handleLogout = () => {
@@ -170,11 +180,12 @@ export default function App() {
   };
 
   const handleSignup = ({ email, password, name, avatarUrl }) => {
+    setIsLoading(true);
+
     signup({ email, password, name, avatarUrl })
-      .then(() => {
-        handleLogin({ email, password });
-      })
-      .catch((err) => console.log(err));
+      .then(() => handleLogin({ email, password }))
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
   };
 
   //Changes contexts
@@ -223,8 +234,27 @@ export default function App() {
     if (!token) {
       return;
     }
-    getCurrentUser(token).then((user) => handleCurrentUser(user));
+    getCurrentUser(token)
+      .then((user) => handleCurrentUser(user))
+      .catch((err) => console.log(err));
   }, []);
+
+  //Escape to close modals
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (e) => {
+      if (e.key === 'Escape') {
+        handleCloseModal();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscClose);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscClose);
+    };
+  }, [activeModal]);
 
   return (
     <div className="app">
@@ -294,6 +324,7 @@ export default function App() {
                 handleCloseModal={handleCloseModal}
                 isOpen={activeModal === 'add-garment'}
                 onAddItem={handleAddItemSubmit}
+                isLoading={isLoading}
               />
             )}
             {activeModal === 'login' && (
@@ -302,6 +333,7 @@ export default function App() {
                 isOpen={activeModal === 'login'}
                 handleLogin={handleLogin}
                 handleSignupClick={handleSignupClick}
+                isLoading={isLoading}
               />
             )}
             {activeModal === 'signup' && (
@@ -310,6 +342,7 @@ export default function App() {
                 isOpen={activeModal === 'signup'}
                 handleSignup={handleSignup}
                 handleLoginClick={handleLoginClick}
+                isLoading={isLoading}
               />
             )}
             {activeModal === 'editProfile' && (
@@ -317,7 +350,7 @@ export default function App() {
                 handleCloseModal={handleCloseModal}
                 isOpen={activeModal === 'editProfile'}
                 onSubmit={handleEditProfile}
-                currentUser={currentUser}
+                isLoading={isLoading}
               />
             )}
           </CurrentUserContext.Provider>

@@ -26,7 +26,7 @@ export default function WeatherCard({ weatherData }) {
       <p className="weather-card__temp">
         {weatherData.temp[currentTemperatureUnit]}&deg;F
       </p>
-      <img src={weatherOption.url} alt="" className="weather-card__image" />
+      <img src={weatherOption.url} alt={weatherOption.condition} className="weather-card__image" />
     </section>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 
-const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
+const AddItemModal = ({ handleCloseModal, onAddItem, isOpen, isLoading }) => {
   const [name, setName] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [weather, setWeather] = useState('');
@@ -22,6 +22,8 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
     e.preventDefault();
     onAddItem({ name, imageUrl, weather });
   };
+
+  const buttonText = isLoading ? 'Saving...' : 'Add garment';
 
   return (
     <ModalWithForm
@@ -94,7 +96,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
         </label>
       </fieldset>
       <button disabled={false} type="submit" className="modal__submit-button">
-        Add garment
+        {buttonText}
       </button>
     </ModalWithForm>
   );

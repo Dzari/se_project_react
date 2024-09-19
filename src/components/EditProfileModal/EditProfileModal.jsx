@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
+import { CurrentUserContext } from '../../contexts/contexts';
 
 const EditProfileModal = ({
   handleCloseModal,
   onSubmit,
   isOpen,
-  currentUser,
+  isLoading,
 }) => {
   const [name, setName] = useState('');
   const [avatarUrl, setAvatarUrl] = useState('');
+
+  const { currentUser } = useContext(CurrentUserContext);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -29,6 +32,8 @@ const EditProfileModal = ({
       setAvatarUrl(currentUser.avatarUrl || '');
     }
   }, [isOpen, currentUser]);
+
+  const buttonText = isLoading ? 'Saving...' : 'Save changes';
 
   return (
     <ModalWithForm
@@ -62,7 +67,7 @@ const EditProfileModal = ({
         />
       </label>
       <button disabled={false} type="submit" className="modal__submit-button">
-        Save changes
+        {buttonText}
       </button>
     </ModalWithForm>
   );

@@ -6,6 +6,7 @@ const LoginModal = ({
   handleSignup,
   isOpen,
   handleLoginClick,
+  isLoading
 }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,6 +33,8 @@ const LoginModal = ({
     e.preventDefault();
     handleSignup({ email, password, name, avatarUrl });
   };
+
+  const buttonText = isLoading ? 'Signing up...' : 'Sign up'
 
   return (
     <ModalWithForm
@@ -90,7 +93,7 @@ const LoginModal = ({
         />
       </label>
       <button type="submit" className="modal__submit-button" disabled={false}>
-        Sign Up
+        {buttonText}
       </button>
       <button
         type="button"
