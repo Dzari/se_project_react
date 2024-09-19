@@ -154,6 +154,9 @@ export default function App() {
   //Authentication and sign in handlers
 
   const handleLogin = (data) => {
+    console.log(
+      `I can't recreate the app crashing. Log in is working just fine for me`
+    );
     login(data)
       .then((res) => {
         localStorage.setItem('jwt', res.token);
