@@ -7,15 +7,20 @@ const Profile = ({
   onCardClick,
   onAddClick,
   onEditProfileClick,
-  onLogoutClick
+  onLogoutClick,
+  handleCardLike,
 }) => {
   return (
     <div className="profile">
-      <SideBar onEditProfileClick={onEditProfileClick} handleLogout={onLogoutClick} />
+      <SideBar
+        onEditProfileClick={onEditProfileClick}
+        handleLogout={onLogoutClick}
+      />
       <ClothesSection
         clothingItems={clothingItems}
         onCardClick={onCardClick}
         onAddClick={onAddClick}
+        handleCardLike={handleCardLike}
       />
     </div>
   );
