@@ -2,11 +2,21 @@ import React, { useContext } from 'react';
 import WeatherCard from '../WeatherCard/WeatherCard';
 import ItemCard from '../ItemCard/ItemCard';
 import './main.css';
-import { CurrentTemperatureUnitContext } from '../../contexts/contexts';
+import {
+  CurrentTemperatureUnitContext,
+  CurrentUserContext,
+  LoggedInContext,
+} from '../../contexts/contexts';
 
-const Main = ({ weatherData, handleCardClick, clothingItems, handleCardLike }) => {
+const Main = ({
+  weatherData,
+  handleCardClick,
+  clothingItems,
+  handleCardLike,
+}) => {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-
+  const { currentUser } = useContext(CurrentUserContext);
+  const { isLoggedIn } = useContext(LoggedInContext);
   return (
     <main>
       <WeatherCard weatherData={weatherData} />
@@ -18,7 +28,10 @@ const Main = ({ weatherData, handleCardClick, clothingItems, handleCardLike }) =
         <ul className="cards__list">
           {clothingItems
             .filter((card) => {
-              return card.weather === weatherData.type;
+              return isLoggedIn
+                ? card.owner === currentUser._id &&
+                    card.weather === weatherData.type
+                : card.weather === weatherData.type;
             })
             .map((card) => {
               return (

@@ -6,7 +6,7 @@ const LoginModal = ({
   handleSignup,
   isOpen,
   handleLoginClick,
-  isLoading
+  isLoading,
 }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -34,7 +34,7 @@ const LoginModal = ({
     handleSignup({ email, password, name, avatarUrl });
   };
 
-  const buttonText = isLoading ? 'Signing up...' : 'Sign up'
+  const buttonText = isLoading ? 'Signing up...' : 'Sign up';
 
   return (
     <ModalWithForm
@@ -59,7 +59,7 @@ const LoginModal = ({
       <label htmlFor="password" className="modal__label">
         Password*{' '}
         <input
-          type="text"
+          type="password"
           id="password"
           className="modal__input"
           placeholder="Password"

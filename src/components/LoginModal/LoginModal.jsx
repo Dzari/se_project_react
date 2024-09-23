@@ -43,7 +43,7 @@ const LoginModal = ({ handleCloseModal, handleLogin, isOpen, handleSignupClick, 
       <label htmlFor="password" className="modal__label">
         Password*{' '}
         <input
-          type="text"
+          type="password"
           id="password"
           className="modal__input"
           placeholder="Password"
