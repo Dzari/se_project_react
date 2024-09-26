@@ -39,7 +39,7 @@ import {
 
 //**********************************Imported Misc**********************************//
 
-import { APIKey, coordinates } from '../../utils/constants.js';
+import { APIKey } from '../../utils/constants.js';
 import { getWeather, filterWeatherData } from '../../utils/weatherAPI.js';
 import {
   CurrentTemperatureUnitContext,
@@ -206,18 +206,29 @@ export default function App() {
       setCurrentUser(user);
     }
   };
-
+  function getUserLocation() {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        (position) => resolve(position),
+        (error) => reject(error)
+      );
+    });
+  }
   //*********************************Initial Functions*****************************//
 
   //Pulls and sets weather data based on location
   // (location services still to be implemented)
+
   useEffect(() => {
-    getWeather(coordinates, APIKey)
-      .then((res) => {
-        const filteredData = filterWeatherData(res);
-        setWeatherData(filteredData);
-      })
-      .catch(console.error);
+    getUserLocation().then((userLocation) => {
+      const { latitude, longitude } = userLocation.coords
+      getWeather({ latitude, longitude }, APIKey)
+        .then((res) => {
+          const filteredData = filterWeatherData(res);
+          setWeatherData(filteredData);
+        })
+        .catch(console.error);
+    });
   }, []);
 
   //Pulls all items and sets to clothingItems
