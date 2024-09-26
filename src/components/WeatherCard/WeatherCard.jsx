@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { weatherOptions } from '../../utils/constants';
+import { weatherOptions, defaultWeatherOptions } from '../../utils/constants';
 import './weatherCard.css';
 import { CurrentTemperatureUnitContext } from '../../contexts/contexts';
 
@@ -14,9 +14,7 @@ export default function WeatherCard({ weatherData }) {
   });
   let weatherOption;
   if (filteredOptions.length === 0) {
-    weatherOption = {
-      url: 'http://localhost:3000/src/assets/day/clearDay.svg',
-    };
+    weatherOption = defaultWeatherOptions[weatherData.isDay ? 'day' : 'night'];
   } else {
     weatherOption = filteredOptions[0];
   }

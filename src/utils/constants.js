@@ -1,6 +1,7 @@
-const baseUrl = process.env.NODE_ENV === "production" 
-? "https://api.wtwr.apps.dj"
-: "http://localhost:3001";
+const baseUrl =
+  process.env.NODE_ENV === 'production'
+    ? 'https://api.wtwr.apps.dj'
+    : 'http://localhost:3001';
 
 const weatherOptions = [
   {
@@ -65,6 +66,19 @@ const weatherOptions = [
   },
 ];
 
+const defaultWeatherOptions = {
+  day: {
+    day: true,
+    condition: 'clear',
+    url: new URL('../assets/day/clearDay.svg', import.meta.url).href,
+  },
+  night: {
+    day: false,
+    condition: 'clear',
+    url: new URL('../assets/night/clearNight.svg', import.meta.url).href,
+  },
+};
+
 const coordinates = {
   latitude: 38.81271,
   longitude: -77.637543,
@@ -80,4 +94,11 @@ const getInitials = (name) => {
     .join('');
 };
 
-export { getInitials, APIKey, coordinates, weatherOptions, baseUrl };
+export {
+  getInitials,
+  APIKey,
+  coordinates,
+  weatherOptions,
+  baseUrl,
+  defaultWeatherOptions,
+};
