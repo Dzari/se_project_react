@@ -1,4 +1,4 @@
-import { baseUrl } from './api';
+import { baseUrl } from "./constants";
 import { validateFetch } from './weatherAPI';
 
 const signup = ({ name, avatarUrl, email, password }) => {

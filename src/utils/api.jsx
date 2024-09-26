@@ -1,6 +1,5 @@
 import { validateFetch } from './weatherAPI';
-
-const baseUrl = 'http://localhost:3001';
+import { baseUrl } from './constants';
 
 const getItems = () => {
   return fetch(`${baseUrl}/items`).then(validateFetch);
