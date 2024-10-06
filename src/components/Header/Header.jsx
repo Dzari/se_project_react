@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import './header.css';
 import logo from '../../assets/wtwrLogo.svg';
