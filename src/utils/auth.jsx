@@ -1,13 +1,13 @@
 import { baseUrl } from "./constants";
 import { validateFetch } from './weatherAPI';
 
-const signup = ({ name, avatarUrl, email, password }) => {
+const signup = ({ name, avatar, email, password }) => {
   return fetch(`${baseUrl}/signup`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ name, avatarUrl, email, password }),
+    body: JSON.stringify({ name, avatar, email, password }),
   }).then(validateFetch);
 };
 
@@ -31,14 +31,14 @@ const getCurrentUser = (token) => {
   }).then(validateFetch);
 };
 
-const updateUser = ({ name, avatarUrl }, token) => {
+const updateUser = ({ name, avatar }, token) => {
   return fetch(`${baseUrl}/users/me`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ name, avatarUrl }),
+    body: JSON.stringify({ name, avatar }),
   }).then(validateFetch);
 };
 

@@ -9,9 +9,9 @@ const SideBar = ({ onEditProfileClick, handleLogout }) => {
   return (
     <div className="sideBar">
       <div className="sideBar__user">
-        {currentUser.avatarUrl ? (
+        {currentUser.avatar ? (
           <img
-            src={currentUser.avatarUrl}
+            src={currentUser.avatar}
             alt="Avatar"
             className="header__avatar"
           />

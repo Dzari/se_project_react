@@ -11,7 +11,7 @@ const LoginModal = ({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [avatarUrl, setAvatarUrl] = useState('');
+  const [avatar, setAvatar] = useState('');
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -25,13 +25,13 @@ const LoginModal = ({
     setName(e.target.value);
   };
 
-  const handleAvatarUrlChange = (e) => {
-    setAvatarUrl(e.target.value);
+  const handleAvatarChange = (e) => {
+    setAvatar(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleSignup({ email, password, name, avatarUrl });
+    handleSignup({ email, password, name, avatar });
   };
 
   const buttonText = isLoading ? 'Signing up...' : 'Sign up';
@@ -80,15 +80,15 @@ const LoginModal = ({
           required={true}
         />
       </label>
-      <label htmlFor="avatarUrl" className="modal__label">
+      <label htmlFor="avatar" className="modal__label">
         Avatar URL*{' '}
         <input
           type="url"
-          id="avatarUrl"
+          id="avatar"
           className="modal__input"
-          placeholder="Avatar URL"
-          value={avatarUrl}
-          onChange={handleAvatarUrlChange}
+          placeholder="Avatar"
+          value={avatar}
+          onChange={handleAvatarChange}
           required={true}
         />
       </label>

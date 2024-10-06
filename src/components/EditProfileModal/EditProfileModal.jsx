@@ -9,7 +9,7 @@ const EditProfileModal = ({
   isLoading,
 }) => {
   const [name, setName] = useState('');
-  const [avatarUrl, setAvatarUrl] = useState('');
+  const [avatar, setAvatar] = useState('');
 
   const { currentUser } = useContext(CurrentUserContext);
 
@@ -17,19 +17,19 @@ const EditProfileModal = ({
     setName(e.target.value);
   };
 
-  const handleAvatarUrlChange = (e) => {
-    setAvatarUrl(e.target.value);
+  const handleAvatarChange = (e) => {
+    setAvatar(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ name, avatarUrl });
+    onSubmit({ name, avatar });
   };
 
   useEffect(() => {
     if (isOpen && currentUser) {
       setName(currentUser.name || '');
-      setAvatarUrl(currentUser.avatarUrl || '');
+      setAvatar(currentUser.avatar || '');
     }
   }, [isOpen, currentUser]);
 
@@ -54,15 +54,15 @@ const EditProfileModal = ({
           required={true}
         />
       </label>
-      <label htmlFor="avatarUrl" className="modal__label">
+      <label htmlFor="avatar" className="modal__label">
         Avatar*{' '}
         <input
           type="url"
-          id="avatarUrl"
+          id="avatar"
           className="modal__input"
           placeholder={'url'}
-          value={avatarUrl}
-          onChange={handleAvatarUrlChange}
+          value={avatar}
+          onChange={handleAvatarChange}
           required={true}
         />
       </label>

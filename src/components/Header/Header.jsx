@@ -42,9 +42,9 @@ export default function Header({
           <div className="header__user">
             <p className="header__username">{currentUser.name}</p>
             <Link to="/profile">
-              {currentUser.avatarUrl ? (
+              {currentUser.avatar ? (
                 <img
-                  src={currentUser.avatarUrl}
+                  src={currentUser.avatar}
                   alt="Avatar"
                   className="header__avatar"
                 />

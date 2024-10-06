@@ -167,6 +167,7 @@ export default function App() {
       .then((res) => {
         localStorage.setItem('jwt', res.token);
         setCurrentUser(res.user);
+        console.log(res.token);
       })
       .then(() => handleIsLoggedIn())
       .then(() => handleCloseModal())
@@ -179,10 +180,10 @@ export default function App() {
     handleIsLoggedIn();
   };
 
-  const handleSignup = ({ email, password, name, avatarUrl }) => {
+  const handleSignup = ({ email, password, name, avatar }) => {
     setIsLoading(true);
 
-    signup({ email, password, name, avatarUrl })
+    signup({ email, password, name, avatar })
       .then(() => handleLogin({ email, password }))
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
@@ -221,7 +222,7 @@ export default function App() {
 
   useEffect(() => {
     getUserLocation().then((userLocation) => {
-      const { latitude, longitude } = userLocation.coords
+      const { latitude, longitude } = userLocation.coords;
       getWeather({ latitude, longitude }, APIKey)
         .then((res) => {
           const filteredData = filterWeatherData(res);
