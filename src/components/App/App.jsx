@@ -165,7 +165,6 @@ export default function App() {
 
     login(data)
       .then((res) => {
-        console.log(res);
         localStorage.setItem('jwt', res.token);
         setCurrentUser(res.user);
       })
