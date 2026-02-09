@@ -12,6 +12,7 @@
     "deploy": "npm run build && scp -r ./dist/* darien_sessions@34.73.151.218:/home/darien_sessions/frontend"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.18",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.0"

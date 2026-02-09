@@ -1,2 +1,3 @@
 @import url(./vendor/normilize.css);
 @import url(./vendor/fonts.css);
+@import "tailwindcss";
