@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 //***********************************Components ***********************************//
 
-import './app.css';
-import Header from '../Header/Header';
-import Main from '../Main/main.jsx';
-import Profile from '../Profile/Profile.jsx';
-import Footer from '../Footer/Footer';
+import "./app.css";
+import Header from "../Header/Header";
+import Main from "../Main/main.jsx";
+import Profile from "../Profile/Profile.jsx";
+import Footer from "../Footer/Footer";
 
 //*************************************Modals**************************************//
 
-import ItemModal from '../ItemModal/ItemModal.jsx';
-import LoginModal from '../LoginModal/LoginModal.jsx';
-import AddItemModal from '../AddItemModal/AddItemModal.jsx';
-import SignupModal from '../SignupModal/SignupModal.jsx';
-import ProtectedRoute from '../ProtectedRoute/protectedRoute.jsx';
-import EditProfileModal from '../EditProfileModal/EditProfileModal.jsx';
+import ItemModal from "../ItemModal/ItemModal.jsx";
+import LoginModal from "../LoginModal/LoginModal.jsx";
+import AddItemModal from "../AddItemModal/AddItemModal.jsx";
+import SignupModal from "../SignupModal/SignupModal.jsx";
+import ProtectedRoute from "../ProtectedRoute/protectedRoute.jsx";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 
 //*************************************API Calls***********************************//
 
@@ -27,7 +27,7 @@ import {
   getItems,
   likeItem,
   postItem,
-} from '../../utils/api.jsx';
+} from "../../utils/api.jsx";
 
 //User API calls
 import {
@@ -35,70 +35,70 @@ import {
   login,
   signup,
   updateUser,
-} from '../../utils/auth.jsx';
+} from "../../utils/auth.jsx";
 
 //**********************************Imported Misc**********************************//
 
-import { APIKey } from '../../utils/constants.js';
-import { getWeather, filterWeatherData } from '../../utils/weatherAPI.js';
+import { APIKey } from "../../utils/constants.js";
+import { getWeather, filterWeatherData } from "../../utils/weatherAPI.js";
 import {
   CurrentTemperatureUnitContext,
   CurrentUserContext,
   LoggedInContext,
-} from '../../contexts/contexts.js';
+} from "../../contexts/contexts.js";
 
 //*************************************App*****************************************//
 export default function App() {
   //******************************Application States*******************************//
 
   const [weatherData, setWeatherData] = useState({
-    type: '',
+    type: "",
     temp: { F: 999, C: 999 },
-    city: '',
+    city: "",
   });
 
   //Determines which modal is visable
 
-  const [activeModal, setActiveModal] = useState('');
+  const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   //Used to determine current temp & an array of clothing items which are used
   // to filter based on temp
-  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
 
   //Sets which user is logged in and a boolean if user is guest or user
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({ _id: '' });
+  const [currentUser, setCurrentUser] = useState({ _id: "" });
 
   //Auth token used for authorization
-  const token = localStorage.getItem('jwt');
+  const token = localStorage.getItem("jwt");
 
   //Sets active modal
   const handleCardClick = (card) => {
-    setActiveModal('preview');
+    setActiveModal("preview");
     setSelectedCard(card);
   };
 
   const handleAddClick = () => {
-    setActiveModal('add-garment');
+    setActiveModal("add-garment");
   };
 
   const handleLoginClick = () => {
-    setActiveModal('login');
+    setActiveModal("login");
   };
 
   const handleSignupClick = () => {
-    setActiveModal('signup');
+    setActiveModal("signup");
   };
 
   const handleEditProfileClick = () => {
-    setActiveModal('editProfile');
+    setActiveModal("editProfile");
   };
 
   const handleCloseModal = () => {
-    setActiveModal('');
+    setActiveModal("");
   };
 
   //User click handlers
@@ -108,7 +108,7 @@ export default function App() {
       deleteLike(currentUser, id, token)
         .then((updatedCard) => {
           setClothingItems((cards) =>
-            cards.map((item) => (item._id === id ? updatedCard : item))
+            cards.map((item) => (item._id === id ? updatedCard : item)),
           );
         })
         .catch((err) => console.log(err));
@@ -116,7 +116,7 @@ export default function App() {
       likeItem(currentUser, item._id, token)
         .then((updatedCard) => {
           setClothingItems((cards) =>
-            cards.map((item) => (item._id === id ? updatedCard : item))
+            cards.map((item) => (item._id === id ? updatedCard : item)),
           );
         })
         .catch((err) => console.log(err));
@@ -127,7 +127,7 @@ export default function App() {
     deleteItem(deletedItem, token)
       .then(() => {
         setClothingItems((clothingItems) =>
-          clothingItems.filter((item) => item._id !== deletedItem._id)
+          clothingItems.filter((item) => item._id !== deletedItem._id),
         );
       })
       .then(handleCloseModal)
@@ -165,7 +165,7 @@ export default function App() {
 
     login(data)
       .then((res) => {
-        localStorage.setItem('jwt', res.token);
+        localStorage.setItem("jwt", res.token);
         setCurrentUser(res.user);
       })
       .then(() => handleIsLoggedIn())
@@ -175,7 +175,7 @@ export default function App() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('jwt', token);
+    localStorage.removeItem("jwt", token);
     handleIsLoggedIn();
   };
 
@@ -191,9 +191,9 @@ export default function App() {
   //Changes contexts
 
   const handleToggleSwitchChange = () => {
-    currentTemperatureUnit === 'F'
-      ? setCurrentTemperatureUnit('C')
-      : setCurrentTemperatureUnit('F');
+    currentTemperatureUnit === "F"
+      ? setCurrentTemperatureUnit("C")
+      : setCurrentTemperatureUnit("F");
   };
 
   const handleIsLoggedIn = () => {
@@ -210,7 +210,7 @@ export default function App() {
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(
         (position) => resolve(position),
-        (error) => reject(error)
+        (error) => reject(error),
       );
     });
   }
@@ -255,20 +255,20 @@ export default function App() {
     if (!activeModal) return;
 
     const handleEscClose = (e) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         handleCloseModal();
       }
     };
 
-    document.addEventListener('keydown', handleEscClose);
+    document.addEventListener("keydown", handleEscClose);
 
     return () => {
-      document.removeEventListener('keydown', handleEscClose);
+      document.removeEventListener("keydown", handleEscClose);
     };
   }, [activeModal]);
 
   return (
-    <div className="app">
+    <div className="app animate-fade-up">
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
@@ -331,36 +331,36 @@ export default function App() {
               onDelete={handleDeleteItem}
             />
 
-            {activeModal === 'add-garment' && (
+            {activeModal === "add-garment" && (
               <AddItemModal
                 handleCloseModal={handleCloseModal}
-                isOpen={activeModal === 'add-garment'}
+                isOpen={activeModal === "add-garment"}
                 onAddItem={handleAddItemSubmit}
                 isLoading={isLoading}
               />
             )}
-            {activeModal === 'login' && (
+            {activeModal === "login" && (
               <LoginModal
                 handleCloseModal={handleCloseModal}
-                isOpen={activeModal === 'login'}
+                isOpen={activeModal === "login"}
                 handleLogin={handleLogin}
                 handleSignupClick={handleSignupClick}
                 isLoading={isLoading}
               />
             )}
-            {activeModal === 'signup' && (
+            {activeModal === "signup" && (
               <SignupModal
                 handleCloseModal={handleCloseModal}
-                isOpen={activeModal === 'signup'}
+                isOpen={activeModal === "signup"}
                 handleSignup={handleSignup}
                 handleLoginClick={handleLoginClick}
                 isLoading={isLoading}
               />
             )}
-            {activeModal === 'editProfile' && (
+            {activeModal === "editProfile" && (
               <EditProfileModal
                 handleCloseModal={handleCloseModal}
-                isOpen={activeModal === 'editProfile'}
+                isOpen={activeModal === "editProfile"}
                 onSubmit={handleEditProfile}
                 isLoading={isLoading}
               />
