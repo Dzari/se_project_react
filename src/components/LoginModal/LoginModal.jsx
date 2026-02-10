@@ -1,9 +1,15 @@
-import { useState } from 'react';
-import ModalWithForm from '../ModalWithForm/ModalWithForm';
+import { useState } from "react";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const LoginModal = ({ handleCloseModal, handleLogin, isOpen, handleSignupClick, isLoading }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const LoginModal = ({
+  handleCloseModal,
+  handleLogin,
+  isOpen,
+  handleSignupClick,
+  isLoading,
+}) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -18,7 +24,7 @@ const LoginModal = ({ handleCloseModal, handleLogin, isOpen, handleSignupClick, 
     handleLogin({ email, password });
   };
 
-  const buttonText = isLoading ? 'Logging in...' : 'Login'
+  const buttonText = isLoading ? "Logging in..." : "Login";
 
   return (
     <ModalWithForm
@@ -29,7 +35,7 @@ const LoginModal = ({ handleCloseModal, handleLogin, isOpen, handleSignupClick, 
       onSubmit={handleSubmit}
     >
       <label htmlFor="email" className="modal__label">
-        Email*{' '}
+        Email*{" "}
         <input
           type="text"
           id="email"
@@ -41,7 +47,7 @@ const LoginModal = ({ handleCloseModal, handleLogin, isOpen, handleSignupClick, 
         />
       </label>
       <label htmlFor="password" className="modal__label">
-        Password*{' '}
+        Password*{" "}
         <input
           type="password"
           id="password"
@@ -55,7 +61,11 @@ const LoginModal = ({ handleCloseModal, handleLogin, isOpen, handleSignupClick, 
       <button type="submit" className="modal__submit-button" disabled={false}>
         {buttonText}
       </button>
-      <button type="button" className="modal__signup-button" onClick={handleSignupClick}>
+      <button
+        type="button"
+        className="modal__signup-button"
+        onClick={handleSignupClick}
+      >
         or Sign up
       </button>
     </ModalWithForm>

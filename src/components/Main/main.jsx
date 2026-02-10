@@ -43,64 +43,58 @@ const Main = ({
       <section className="mx-auto w-full max-w-6xl px-4 py-6 md:py-10">
         <div className="mb-4 flex flex-col gap-2 sm:mb-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="min-w-0">
-            <p className="text-sm font-semibold text-[#ECECEC]/90">
+            <p className="text-sm font-semibold text-[#492828]/90">
               {tempValue != null ? (
                 <>
                   Today is{" "}
-                  <span className="text-[#ECECEC] tabular-nums">
+                  <span className="text-[#492828] tabular-nums">
                     {tempValue}
                   </span>
-                  <span className="text-[#ECECEC]/80">
+                  <span className="text-[#492828]/70">
                     {" "}
                     &deg;{currentTemperatureUnit}
                   </span>
-                  <span className="text-[#ECECEC]/60"> • </span>
-                  <span className="text-[#ECECEC]/85">
+                  <span className="text-[#492828]/40"> • </span>
+                  <span className="text-[#492828]/75">
                     You may want to wear:
                   </span>
                 </>
               ) : (
-                <span className="text-[#ECECEC]/70">
+                <span className="text-[#492828]/60">
                   Loading recommendations…
                 </span>
               )}
             </p>
 
-            <p className="mt-1 text-xs text-[#ECECEC]/60">
+            <p className="mt-1 text-xs text-[#492828]/60">
               Showing{" "}
-              <span className="text-[#ECECEC]/80 tabular-nums">
+              <span className="text-[#492828]/80 tabular-nums">
                 {visibleItems.length}
               </span>{" "}
               item{visibleItems.length === 1 ? "" : "s"} for{" "}
-              <span className="text-[#ECECEC]/80">
+              <span className="text-[#492828]/80">
                 {weatherData?.type ?? "—"}
               </span>
             </p>
           </div>
+
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center rounded-full border border-[#ECECEC]/10 bg-[#ECECEC]/[0.04] px-2.5 py-1 text-xs font-semibold text-[#ECECEC]/75">
+            <span className="inline-flex items-center rounded-full border border-[#492828]/10 bg-[#492828]/[0.03] px-2.5 py-1 text-xs font-semibold text-[#492828]/70">
               {weatherData?.isDay ? "Day" : "Night"}
             </span>
           </div>
         </div>
 
         {visibleItems.length === 0 ? (
-          <div className="rounded-2xl border border-[#ECECEC]/10 bg-[#ECECEC]/[0.03] p-6 text-sm text-[#ECECEC]/70">
+          <div className="rounded-2xl border border-[#492828]/10 bg-[#492828]/[0.03] p-6 text-sm text-[#492828]/70">
             No items match this weather yet. Try adding a few clothes for{" "}
-            <span className="text-[#ECECEC]/85">
+            <span className="text-[#492828]/85">
               {weatherData?.type ?? "today"}
             </span>
             .
           </div>
         ) : (
-          <ul
-            className="
-              grid list-none gap-4 p-0
-              grid-cols-2
-              sm:grid-cols-3
-              lg:grid-cols-4
-            "
-          >
+          <ul className="grid list-none gap-4 p-0 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
             {visibleItems.map((card) => (
               <ItemCard
                 key={card._id}
