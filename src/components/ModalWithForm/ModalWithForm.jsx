@@ -1,4 +1,4 @@
-import './modalWithForm.css';
+import "./modalWithForm.css";
 
 export default function ModalWithForm({
   children,
@@ -8,7 +8,7 @@ export default function ModalWithForm({
   onSubmit,
 }) {
   return (
-    <div className={`modal ${isOpen && 'modal_opened'}`}>
+    <div className={`modal ${isOpen && "modal_opened"}`}>
       <div className="modal__container">
         <h2 className="modal__title">{title}</h2>
         <button

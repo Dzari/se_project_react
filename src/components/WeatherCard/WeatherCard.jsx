@@ -1,7 +1,7 @@
-import { useContext } from 'react';
-import { weatherOptions, defaultWeatherOptions } from '../../utils/constants';
-import './weatherCard.css';
-import { CurrentTemperatureUnitContext } from '../../contexts/contexts';
+import { useContext } from "react";
+import { weatherOptions, defaultWeatherOptions } from "../../utils/constants";
+import "./weatherCard.css";
+import { CurrentTemperatureUnitContext } from "../../contexts/contexts";
 
 export default function WeatherCard({ weatherData }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
@@ -14,13 +14,13 @@ export default function WeatherCard({ weatherData }) {
   });
   let weatherOption;
   if (filteredOptions.length === 0) {
-    weatherOption = defaultWeatherOptions[weatherData.isDay ? 'day' : 'night'];
+    weatherOption = defaultWeatherOptions[weatherData.isDay ? "day" : "night"];
   } else {
     weatherOption = filteredOptions[0];
   }
 
   return (
-    <section className="weather-card">
+    <section className="weather-card max-w-6xl mx-auto mt-4">
       <p className="weather-card__temp">
         {weatherData.temp[currentTemperatureUnit]}&deg;{currentTemperatureUnit}
       </p>
