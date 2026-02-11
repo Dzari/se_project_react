@@ -225,7 +225,6 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-[#ECECEC] text-[#492828] animate-fade-up">
-      {/* soft palette glows */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(900px_circle_at_18%_8%,rgba(132,147,74,0.22),transparent_55%),radial-gradient(900px_circle_at_82%_28%,rgba(101,109,63,0.16),transparent_60%),radial-gradient(900px_circle_at_50%_110%,rgba(73,40,40,0.10),transparent_55%)]" />
 
       <CurrentTemperatureUnitContext.Provider
