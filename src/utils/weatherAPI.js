@@ -2,10 +2,9 @@ const validateFetch = (res) => {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 };
 
-
 export const getWeather = ({ latitude, longitude }, APIkey) => {
   return fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`,
   ).then((res) => {
     return validateFetch(res);
   });
@@ -13,7 +12,6 @@ export const getWeather = ({ latitude, longitude }, APIkey) => {
 
 export const filterWeatherData = (data) => {
   const result = {};
-
   result.city = data.name;
   result.temp = {
     F: Math.round(data.main.temp),
@@ -33,11 +31,11 @@ const isDay = ({ sunrise, sunset }, now) => {
 
 const getWeatherType = (temperature) => {
   if (temperature >= 86) {
-    return 'hot';
+    return "hot";
   } else if (temperature >= 66) {
-    return 'warm';
+    return "warm";
   } else {
-    return 'cold';
+    return "cold";
   }
 };
 

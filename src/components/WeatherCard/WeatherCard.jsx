@@ -20,7 +20,7 @@ export default function WeatherCard({ weatherData }) {
   }
 
   return (
-    <section className="weather-card max-w-6xl mx-auto">
+    <section className="weather-card max-w-6xl mx-auto mt-4">
       <p className="weather-card__temp">
         {weatherData.temp[currentTemperatureUnit]}&deg;{currentTemperatureUnit}
       </p>
